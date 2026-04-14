@@ -24,19 +24,19 @@ jobs:
       run: | 
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:${{ github.sha}}
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:latest
-deploy:
-  needs: build
-  if: github.event_name == "push"
-  runs-on : ubuntu-latest
-  steps:
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v3
-      with:
-        app-name: mon-app-container
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:${{ github.sha }}
-    - name: Afficher dans le résumé du job l'URL
-      run: 
-        echo "Réussi !" $GITHUB_STEP_SUMMARY
-        echo "Lien app  https://mon-app-container.azurewebsites.net" $GITHUB_STEP_SUMMARY
-        
+  deploy:
+    needs: build
+    if: github.event_name == "push"
+    runs-on : ubuntu-latest
+    steps:
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: mon-app-container
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:${{ github.sha }}
+      - name: Afficher dans le résumé du job l'URL
+        run: 
+          echo "Réussi !" $GITHUB_STEP_SUMMARY
+          echo "Lien app  https://mon-app-container.azurewebsites.net" $GITHUB_STEP_SUMMARY
+          
