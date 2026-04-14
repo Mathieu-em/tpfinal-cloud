@@ -16,7 +16,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build Docker image
       run: docker build --build-arg BUILD_ID=${{ github.sha }} -t monapp ./mon-app
-        docker tag monapp ${{ secrets.DOCKERHUB_USERNAME}}/monapp:${{github/sha}}
+        docker tag monapp ${{ secrets.DOCKERHUB_USERNAME}}/monapp:${{github.sha}}
         docker tag monapp ${{secrets.DOCKERHUB_USERNAME}}/monapp:latest
     
     - name: Push Docker image
