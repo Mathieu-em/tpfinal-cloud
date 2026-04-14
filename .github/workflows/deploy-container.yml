@@ -19,14 +19,13 @@ jobs:
         docker build --build-arg BUILD_ID=${{ github.sha }} -t monapp ./mon-app
         docker tag monapp ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:${{ github.sha }}
         docker tag monapp ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:latest
-    
     - name: Push Docker image
       run: | 
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:${{ github.sha}}
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/mon-app:latest
   deploy:
     needs: build
-    if: github.event_name == "push"
+    if: github.event_name == 'push'
     runs-on : ubuntu-latest
     steps:
       - name: Deploy to Azure Web App
