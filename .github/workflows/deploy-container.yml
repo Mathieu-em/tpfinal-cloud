@@ -38,5 +38,5 @@ deploy:
     - name: Afficher dans le résumé du job l'URL
       run: 
         echo "Réussi !" $GITHUB_STEP_SUMMARY
-        echo "Lien app : https://mon-app-container.azurewebsites.net" $GITHUB_STEP_SUMMARY
+        echo "Lien app  https://mon-app-container.azurewebsites.net" $GITHUB_STEP_SUMMARY
         
