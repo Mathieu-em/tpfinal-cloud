@@ -9,3 +9,9 @@ const today = new Date().toLocaleDateString('fr-FR')
 <p>Build : {{ buildId }}</p>
 </header>
 </template>
+
+<style>
+p{
+  color: red;
+}
+</style>
